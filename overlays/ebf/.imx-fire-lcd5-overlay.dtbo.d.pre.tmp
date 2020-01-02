@@ -1,4 +1,0 @@
-imx-fire-lcd5-overlay.o: overlays/ebf/imx-fire-lcd5-overlay.dts \
- include/imx6ul-pinfunc.h include/imx6ull-pinfunc-snvs.h \
- include/dt-bindings/interrupt-controller/irq.h \
- include/dt-bindings/gpio/gpio.h

@@ -1,5 +1,0 @@
-imx-MCP2517FD-can0-overlay.o: \
- overlays/imx6ull/imx-MCP2517FD-can0-overlay.dts include/imx6ul-pinfunc.h \
- include/imx6ull-pinfunc-snvs.h \
- include/dt-bindings/interrupt-controller/irq.h \
- include/dt-bindings/gpio/gpio.h

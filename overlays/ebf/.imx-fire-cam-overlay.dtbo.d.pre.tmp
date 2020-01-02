@@ -1,3 +1,0 @@
-imx-fire-cam-overlay.o: overlays/ebf/imx-fire-cam-overlay.dts \
- include/imx6ul-pinfunc.h include/dt-bindings/gpio/gpio.h \
- include/dt-bindings/clock/imx6ul-clock.h include/imx6ull-pinfunc-snvs.h

@@ -1,2 +1,0 @@
-imx-fire-sound-overlay.o: overlays/ebf/imx-fire-sound-overlay.dts \
- include/imx6ul-pinfunc.h include/dt-bindings/clock/imx6ul-clock.h

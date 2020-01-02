@@ -1,2 +1,0 @@
-imx-fire-dht11-overlay.o: overlays/ebf/imx-fire-dht11-overlay.dts \
- include/imx6ul-pinfunc.h include/dt-bindings/gpio/gpio.h

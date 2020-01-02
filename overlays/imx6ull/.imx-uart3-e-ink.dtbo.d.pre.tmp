@@ -1,2 +1,0 @@
-imx-uart3-e-ink.o: overlays/imx6ull/imx-uart3-e-ink.dts \
- include/imx6ul-pinfunc.h
