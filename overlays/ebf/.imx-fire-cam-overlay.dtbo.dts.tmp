@@ -1,0 +1,126 @@
+# 1 "overlays/ebf/imx-fire-cam-overlay.dts"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "overlays/ebf/imx-fire-cam-overlay.dts"
+# 10 "overlays/ebf/imx-fire-cam-overlay.dts"
+/dts-v1/;
+/plugin/;
+
+# 1 "include/imx6ul-pinfunc.h" 1
+# 14 "overlays/ebf/imx-fire-cam-overlay.dts" 2
+# 1 "include/dt-bindings/gpio/gpio.h" 1
+# 15 "overlays/ebf/imx-fire-cam-overlay.dts" 2
+# 1 "include/dt-bindings/clock/imx6ul-clock.h" 1
+# 16 "overlays/ebf/imx-fire-cam-overlay.dts" 2
+# 1 "include/imx6ull-pinfunc-snvs.h" 1
+# 17 "overlays/ebf/imx-fire-cam-overlay.dts" 2
+/ {
+     fragment@0 {
+        target=<&i2c2>;
+        __overlay__ {
+      clock_frequency = <100000>;
+     pinctrl-names = "default";
+     pinctrl-0 = <&pinctrl_i2c2>;
+     status = "okay";
+     #address-cells = <1>;
+     #size-cells = <0>;
+     ov5640: ov5640@3c {
+      compatible = "ovti,ov5640";
+      reg = <0x3c>;
+      pinctrl-names = "default";
+      pinctrl-0 = <&pinctrl_csi1>;
+      clocks = <&clks 138>;
+      clock-names = "csi_mclk";
+      pwn-gpios = <&gpio_spi 6 1>;
+      rst-gpios = <&gpio_spi 5 0>;
+      csi_id = <0>;
+      mclk = <24000000>;
+      mclk_source = <0>;
+      status = "okay";
+      port {
+       ov5640_ep: endpoint {
+        remote-endpoint = <&csi1_ep>;
+       };
+      };
+     };
+        };
+     };
+  fragment@1 {
+   target=<&iomuxc>;
+   __overlay__ {
+      pinctrl_csi1: csi1grp {
+       fsl,pins = <
+        0x01d4 0x0460 0x0000 0 0 0x1b088
+        0x01d8 0x0464 0x0528 0 1 0x1b088
+        0x01dc 0x0468 0x052c 0 0 0x1b088
+        0x01e0 0x046c 0x0524 0 0 0x1b088
+        0x01e4 0x0470 0x04c4 0 0 0x1b088
+        0x01e8 0x0474 0x04c8 0 0 0x1b088
+        0x01ec 0x0478 0x04d8 0 1 0x1b088
+        0x01f0 0x047c 0x04cc 0 0 0x1b088
+        0x01f4 0x0480 0x04dc 0 1 0x1b088
+        0x01f8 0x0484 0x04e0 0 1 0x1b088
+        0x01fc 0x0488 0x04e4 0 1 0x1b088
+        0x0200 0x048c 0x04e8 0 1 0x1b088
+       >;
+     };
+     pinctrl_i2c2: i2c2grp {
+      fsl,pins = <
+       0x00bc 0x0348 0x05ac 2 2 0x4001b8b0
+       0x00c0 0x034c 0x05b0 2 2 0x4001b8b0
+      >;
+     };
+     pinctrl_spi4: spi4grp {
+      fsl,pins = <
+       0x0000 0x0044 0x0000 0x5 0x0 0x70a1
+       0x0004 0x0048 0x0000 0x5 0x0 0x70a1
+       0x0024 0x0068 0x0000 0x5 0x0 0x70a1
+       0x0028 0x006C 0x0000 0x5 0x0 0x80000000
+      >;
+     };
+   };
+  };
+  fragment@2 {
+   target = <&csi>;
+   __overlay__ {
+    status = "okay";
+
+    port {
+     csi1_ep: endpoint {
+      remote-endpoint = <&ov5640_ep>;
+     };
+    };
+   };
+  };
+  fragment@3 {
+   target-path = "/";
+   __overlay__ {
+    spi4 {
+     compatible = "spi-gpio";
+     pinctrl-names = "default";
+     pinctrl-0 = <&pinctrl_spi4>;
+     pinctrl-assert-gpios = <&gpio5 8 1>;
+     status = "okay";
+     gpio-sck = <&gpio5 11 0>;
+     gpio-mosi = <&gpio5 10 0>;
+     cs-gpios = <&gpio5 7 0>;
+     num-chipselects = <1>;
+     #address-cells = <1>;
+     #size-cells = <0>;
+
+     gpio_spi: gpio_spi@0 {
+      compatible = "fairchild,74hc595";
+      gpio-controller;
+      #gpio-cells = <2>;
+      reg = <0>;
+      registers-number = <1>;
+      registers-default = /bits/ 8 <0x57>;
+      spi-max-frequency = <100000>;
+     };
+    };
+   };
+
+
+  };
+
+};

@@ -1,0 +1,4 @@
+imx-fire-btwifi-overlay.o: overlays/ebf/imx-fire-btwifi-overlay.dts \
+ include/imx6ul-pinfunc.h include/imx6ull-pinfunc-snvs.h \
+ include/dt-bindings/input/linux-event-codes.h \
+ include/dt-bindings/gpio/gpio.h

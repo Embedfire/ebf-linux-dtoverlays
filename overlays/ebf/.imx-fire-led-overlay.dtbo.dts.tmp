@@ -1,0 +1,67 @@
+# 1 "overlays/ebf/imx-fire-led-overlay.dts"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "overlays/ebf/imx-fire-led-overlay.dts"
+# 9 "overlays/ebf/imx-fire-led-overlay.dts"
+ /dts-v1/;
+ /plugin/;
+# 1 "include/imx6ul-pinfunc.h" 1
+# 12 "overlays/ebf/imx-fire-led-overlay.dts" 2
+# 1 "include/dt-bindings/gpio/gpio.h" 1
+# 13 "overlays/ebf/imx-fire-led-overlay.dts" 2
+ / {
+        fragment@0 {
+            target-path = "/";
+            __overlay__ {
+                normal_led{
+                    compatible = "gpio-leds";
+                    red {
+                        pinctrl-names = "default";
+                        pinctrl-0 = <&pinctrl_red>;
+                        label = "red";
+                        gpios = <&gpio1 4 1>;
+                        default-state = "off";
+                        linux,default-trigger = "none";
+                    };
+
+                    green {
+                        pinctrl-names = "default";
+                        pinctrl-0 = <&pinctrl_green>;
+                        label = "green";
+                        gpios = <&gpio4 20 1>;
+                        default-state = "off";
+                        linux,default-trigger = "none";
+                    };
+
+                    blue
+                    {
+                         pinctrl-names = "default";
+                        pinctrl-0 = <&pinctrl_blue>;
+                        label = "blue";
+                        gpios = <&gpio4 19 1>;
+                        default-state = "off";
+                        linux,default-trigger = "none";
+                    };
+
+
+                };
+            };
+        };
+
+        fragment@1 {
+            target= <&iomuxc>;
+            __overlay__{
+                pinctrl_red:redgrp{
+                    fsl,pins = < 0x006c 0x02f8 0x0000 5 0 0x1b0b0 >;
+                };
+                pinctrl_green:grngrp{
+                    fsl,pins = < 0x01e0 0x046c 0x0000 5 0 0x1b0b0 >;
+                };
+
+                pinctrl_blue:bluegrp{
+                    fsl,pins = <0x01dc 0x0468 0x0000 5 0 0x1b0b0 >;
+                };
+            };
+        };
+
+ };

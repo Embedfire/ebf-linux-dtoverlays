@@ -1,0 +1,2 @@
+imx-i2c2-overlay.o: overlays/imx6ull/imx-i2c2-overlay.dts \
+ include/imx6ul-pinfunc.h

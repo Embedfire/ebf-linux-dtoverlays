@@ -1,0 +1,36 @@
+# 1 "overlays/imx6ull/imx-uart3-e-ink.dts"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "overlays/imx6ull/imx-uart3-e-ink.dts"
+# 9 "overlays/imx6ull/imx-uart3-e-ink.dts"
+/dts-v1/;
+/plugin/;
+
+# 1 "include/imx6ul-pinfunc.h" 1
+# 13 "overlays/imx6ull/imx-uart3-e-ink.dts" 2
+
+/ {
+ ccompatible = "fsl,imx6ull-14x14-evk", "fsl,imx6ull";
+
+
+ fragment@0 {
+  target = <&uart3>;
+  __overlay__ {
+   status = "okay";
+   pinctrl-names = "default";
+   pinctrl-0 = <&pinctrl_uart3>;
+  };
+ };
+# 51 "overlays/imx6ull/imx-uart3-e-ink.dts"
+    fragment@1 {
+        target = <&iomuxc>;
+        __overlay__ {
+            pinctrl_uart3: uart3grp {
+                fsl,pins = <
+                    0x00a4 0x0330 0x0000 0 0 0x1b0b1
+                    0x00a8 0x0334 0x0634 0 1 0x1b0b1
+                >;
+            };
+        };
+    };
+};

@@ -1,0 +1,3 @@
+imx-seeed-voicecard-2mic-overlay.o: \
+ overlays/imx6ull/imx-seeed-voicecard-2mic-overlay.dts \
+ include/imx6ul-pinfunc.h include/dt-bindings/clock/imx6ul-clock.h

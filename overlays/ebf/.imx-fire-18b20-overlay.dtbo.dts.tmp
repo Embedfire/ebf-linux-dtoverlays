@@ -1,0 +1,39 @@
+# 1 "overlays/ebf/imx-fire-18b20-overlay.dts"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "overlays/ebf/imx-fire-18b20-overlay.dts"
+# 9 "overlays/ebf/imx-fire-18b20-overlay.dts"
+/dts-v1/;
+/plugin/;
+# 1 "include/imx6ul-pinfunc.h" 1
+# 12 "overlays/ebf/imx-fire-18b20-overlay.dts" 2
+# 1 "include/dt-bindings/gpio/gpio.h" 1
+# 13 "overlays/ebf/imx-fire-18b20-overlay.dts" 2
+ / {
+        fragment@0 {
+            target-path = "/";
+            __overlay__ {
+  ds18b20{
+   compatible = "w1-gpio";
+   gpios = <&gpio1 2 0>;
+   linux,open-drain;
+   pinctrl-names = "default";
+   pinctrl-0 = <&pinctrl_onewire>;
+   status = "okay";
+  };
+            };
+        };
+
+        fragment@1 {
+            target= <&iomuxc>;
+            __overlay__{
+  pinctrl_onewire: onewire {
+   fsl,pins = <
+
+    0x0064 0x02f0 0x0000 5 0 0x400138B1
+   >;
+  };
+            };
+        };
+
+ };

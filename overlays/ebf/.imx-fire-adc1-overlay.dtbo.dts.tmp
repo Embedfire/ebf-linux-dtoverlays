@@ -1,0 +1,47 @@
+# 1 "overlays/ebf/imx-fire-adc1-overlay.dts"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "overlays/ebf/imx-fire-adc1-overlay.dts"
+# 10 "overlays/ebf/imx-fire-adc1-overlay.dts"
+/dts-v1/;
+/plugin/;
+# 1 "include/imx6ul-pinfunc.h" 1
+# 13 "overlays/ebf/imx-fire-adc1-overlay.dts" 2
+# 1 "include/dt-bindings/gpio/gpio.h" 1
+# 14 "overlays/ebf/imx-fire-adc1-overlay.dts" 2
+
+ / {
+     fragment@0 {
+        target-path="/";
+        __overlay__ {
+     reg_vref_3v3: regulator@2 {
+      compatible = "regulator-fixed";
+      regulator-name = "vref-3v3";
+      regulator-min-microvolt = <3300000>;
+      regulator-max-microvolt = <3300000>;
+     };
+        };
+     };
+
+    fragment@1 {
+        target=<&adc1>;
+        __overlay__ {
+     pinctrl-names = "default";
+     pinctrl-0 = <&pinctrl_adc1>;
+     vref-supply = <&reg_vref_3v3>;
+     num-channels = <4>;
+     status = "okay";
+        };
+    };
+  fragment@2 {
+    target=<&iomuxc>;
+    __overlay__ {
+      pinctrl_adc1: adc1grp{
+      fsl,pins = <
+       0x0068 0x02f4 0x0000 5 0 0x000010B1
+      >;
+     };
+
+    };
+  };
+};

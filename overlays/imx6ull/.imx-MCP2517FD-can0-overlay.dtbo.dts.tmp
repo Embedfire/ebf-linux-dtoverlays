@@ -1,0 +1,85 @@
+# 1 "overlays/imx6ull/imx-MCP2517FD-can0-overlay.dts"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "overlays/imx6ull/imx-MCP2517FD-can0-overlay.dts"
+
+
+
+
+
+# 1 "include/imx6ul-pinfunc.h" 1
+# 7 "overlays/imx6ull/imx-MCP2517FD-can0-overlay.dts" 2
+# 1 "include/imx6ull-pinfunc-snvs.h" 1
+# 8 "overlays/imx6ull/imx-MCP2517FD-can0-overlay.dts" 2
+# 1 "include/dt-bindings/interrupt-controller/irq.h" 1
+# 9 "overlays/imx6ull/imx-MCP2517FD-can0-overlay.dts" 2
+# 1 "include/dt-bindings/gpio/gpio.h" 1
+# 10 "overlays/imx6ull/imx-MCP2517FD-can0-overlay.dts" 2
+
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "fsl,imx6ull-14x14-evk", "fsl,imx6ull";
+
+
+
+    fragment@1 {
+        target = <&iomuxc>;
+        __overlay__ {
+            int_pins: int_pins {
+                fsl,pins = <
+                        0x01dc 0x0468 0x0000 5 0 0x14
+                >;
+            };
+
+            pinctrl_ecspi3_master: ecspi3grp1 {
+                fsl,pins = <
+                        0x0098 0x0324 0x0554 8 0 0x10b0
+                        0x009c 0x0328 0x055c 8 0 0x10b0
+                        0x00a0 0x032c 0x0558 8 0 0x10b0
+                        0x0094 0x0320 0x0000 5 0 0x10b0
+                >;
+            };
+
+        };
+    };
+
+
+    fragment@2 {
+        target-path = "/clocks";
+        __overlay__ {
+
+            mcp2517fd_osc: mcp2517fd_osc {
+                compatible = "fixed-clock";
+                #clock-cells = <0>;
+                clock-frequency = <40000000>;
+            };
+        };
+    };
+
+
+    fragment@3 {
+        target = <&ecspi3>;
+        __overlay__ {
+
+            cs-gpios = <&gpio1 20 1>;
+            pinctrl-names = "default";
+            pinctrl-0 = <&pinctrl_ecspi3_master &int_pins>;
+            status = "okay";
+
+
+            #address-cells = <1>;
+            #size-cells = <0>;
+
+            mcp2517fd: mcp2517fd@0 {
+                reg = <0>;
+                compatible = "microchip,mcp2517fd";
+                spi-max-frequency = <125000000>;
+                interrupt-parent = <&gpio4>;
+                interrupts = <19 8>;
+                clocks = <&mcp2517fd_osc>;
+            };
+        };
+    };
+};

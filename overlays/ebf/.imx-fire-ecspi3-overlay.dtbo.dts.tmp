@@ -1,0 +1,52 @@
+# 1 "overlays/ebf/imx-fire-ecspi3-overlay.dts"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "overlays/ebf/imx-fire-ecspi3-overlay.dts"
+# 9 "overlays/ebf/imx-fire-ecspi3-overlay.dts"
+# 1 "include/imx6ul-pinfunc.h" 1
+# 10 "overlays/ebf/imx-fire-ecspi3-overlay.dts" 2
+# 1 "include/imx6ull-pinfunc-snvs.h" 1
+# 11 "overlays/ebf/imx-fire-ecspi3-overlay.dts" 2
+# 1 "include/dt-bindings/interrupt-controller/irq.h" 1
+# 12 "overlays/ebf/imx-fire-ecspi3-overlay.dts" 2
+# 1 "include/dt-bindings/gpio/gpio.h" 1
+# 13 "overlays/ebf/imx-fire-ecspi3-overlay.dts" 2
+/dts-v1/;
+/plugin/;
+
+/ {
+  fragment@0 {
+   target = <&ecspi3>;
+   __overlay__ {
+    fsl,spi-num-chipselects = <1>;
+    cs-gpio = <&gpio1 20 1>;
+    pinctrl-names = "default";
+    pinctrl-0 = <&pinctrl_ecspi3>;
+    status = "okay";
+    #address-cells = <1>;
+       #size-cells = <0>;
+    spidev@0 {
+     compatible = "spidev";
+     spi-max-frequency = <20000000>;
+     reg = <0>;
+    };
+   };
+  };
+
+  fragment@1 {
+   target = <&iomuxc>;
+   __overlay__ {
+    pinctrl_ecspi3:ecspi3grp {
+     fsl,pins = <
+      0x0094 0x0320 0x0000 5 0 0x10b1
+      0x0098 0x0324 0x0554 8 0 0x10b1
+      0x009c 0x0328 0x055c 8 0 0x10b1
+      0x00a0 0x032c 0x0558 8 0 0x10b1
+     >;
+    };
+   };
+  };
+
+
+
+};

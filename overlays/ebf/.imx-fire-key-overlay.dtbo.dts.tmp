@@ -1,0 +1,47 @@
+# 1 "overlays/ebf/imx-fire-key-overlay.dts"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "overlays/ebf/imx-fire-key-overlay.dts"
+# 9 "overlays/ebf/imx-fire-key-overlay.dts"
+# 1 "include/imx6ul-pinfunc.h" 1
+# 10 "overlays/ebf/imx-fire-key-overlay.dts" 2
+# 1 "include/imx6ull-pinfunc-snvs.h" 1
+# 11 "overlays/ebf/imx-fire-key-overlay.dts" 2
+# 1 "include/dt-bindings/input/linux-event-codes.h" 1
+# 12 "overlays/ebf/imx-fire-key-overlay.dts" 2
+# 1 "include/dt-bindings/gpio/gpio.h" 1
+# 13 "overlays/ebf/imx-fire-key-overlay.dts" 2
+
+/dts-v1/;
+/plugin/;
+
+/{
+
+ fragment@0 {
+  target-path = "/";
+  __overlay__ {
+   gpio-keys {
+     compatible = "gpio-keys";
+     pinctrl-names = "default";
+     pinctrl-0 = <&pinctrl_gpio_keys>;
+
+     Key0{
+      label = "Key 0";
+      gpios = <&gpio5 1 0>;
+      linux,code=<11>;
+    };
+   };
+  };
+ };
+
+ fragment@1 {
+  target = <&iomuxc_snvs>;
+  __overlay__ {
+   pinctrl_gpio_keys: keysgrp{
+    fsl,pins = <
+     0x0020 0x02ac 0x0000 5 0 0x000110A1
+    >;
+   };
+  };
+ };
+};

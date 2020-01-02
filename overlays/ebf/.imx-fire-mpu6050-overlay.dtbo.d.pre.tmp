@@ -1,0 +1,2 @@
+imx-fire-mpu6050-overlay.o: overlays/ebf/imx-fire-mpu6050-overlay.dts \
+ include/imx6ul-pinfunc.h

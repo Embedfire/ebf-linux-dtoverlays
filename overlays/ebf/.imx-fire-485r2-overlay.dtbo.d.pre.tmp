@@ -1,0 +1,2 @@
+imx-fire-485r2-overlay.o: overlays/ebf/imx-fire-485r2-overlay.dts \
+ include/imx6ul-pinfunc.h include/dt-bindings/gpio/gpio.h
