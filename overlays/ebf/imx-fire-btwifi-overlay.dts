@@ -88,7 +88,7 @@
             vmmc-supply = <&reg_sd1_vmmc>;
             no-1-8-v;
             non-removable;
-            /*cd-post;*/
+            cd-post;
             pm-ignore-notify;
             wifi-host;
             status = "okay";
