@@ -18,10 +18,6 @@
      fragment@0 {
         target=<&i2c2>;
         __overlay__ {
-		 			clock_frequency = <100000>;
-					pinctrl-names = "default";
-					pinctrl-0 = <&pinctrl_i2c2>;
-					status = "okay";
 					#address-cells = <1>;
 					#size-cells = <0>;        
 					ov5640: ov5640@3c {
@@ -64,12 +60,7 @@
 								MX6UL_PAD_CSI_DATA07__CSI_DATA09	0x1b088
 							>;
 					};
-					pinctrl_i2c2: i2c2grp {
-						fsl,pins = <
-							MX6UL_PAD_UART5_TX_DATA__I2C2_SCL 0x4001b8b0
-							MX6UL_PAD_UART5_RX_DATA__I2C2_SDA 0x4001b8b0
-						>;
-					};
+
 			};
 		};
 		fragment@2 {
