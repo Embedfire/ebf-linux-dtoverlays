@@ -17,17 +17,22 @@
         target=<&uart2>;
         __overlay__ {
 		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_uart2>;
+		fsl,uart-has-rtscts;
+		pinctrl-0 = <&pinctrl_uart2dte>;
 		status = "okay";         
         };
      };
     fragment@1 {
         target=<&iomuxc>;
         __overlay__ {
-            pinctrl_uart2:uart2grp {
+            pinctrl_uart2dte:uart2dtegrp {
                 fsl,pins = <
 			MX6UL_PAD_UART2_TX_DATA__UART2_DCE_TX	0x1b0b1
-			MX6UL_PAD_UART2_RX_DATA__UART2_DCE_RX	0x1b0b1        
+			MX6UL_PAD_UART2_RX_DATA__UART2_DCE_RX	0x1b0b1
+			/*MX6UL_PAD_UART3_RX_DATA__UART2_DCE_RTS	0x1b0b1
+			MX6UL_PAD_UART3_TX_DATA__UART2_DCE_CTS	0x1b0b1    pengjie 20190622*/
+			MX6UL_PAD_UART2_CTS_B__UART2_DCE_CTS	0x1b0b1
+			MX6UL_PAD_UART2_RTS_B__UART2_DCE_RTS	0x1b0b1               
                 >;
             };  
         };

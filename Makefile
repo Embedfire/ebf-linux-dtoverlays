@@ -133,6 +133,7 @@ all_%:
 clean_%:
 	$(Q)$(MAKE) PLATFORM=$* clean_arch
 	rm config-pin || true
+	rm -rf output
 
 install_%:
 	$(Q)$(MAKE) PLATFORM=$* install_arch
@@ -180,8 +181,12 @@ cmd_dtc = $(CPP) $(dtc_cpp_flags) -x assembler-with-cpp -o $(dtc-tmp) $< ; \
                 -d $(depfile).dtc.tmp $(dtc-tmp) ; \
         cat $(depfile).pre.tmp $(depfile).dtc.tmp > $(depfile)
 
-$(obj)/%.dtbo: $(src)/%.dts FORCE
+$(obj)/%.dtbo: $(src)/%.dts FORCE | create_output
 	$(call if_changed_dep,dtc)
+	@mv $@ output
+
+create_output: 
+	@mkdir -p output
 
 PHONY += all_arch
 all_arch: $(PLATFORM_DTB)

@@ -22,6 +22,11 @@
 				pinctrl-names = "default";
 				pinctrl-0 = <&pinctrl_ecspi3>;
 				status = "okay";
+				spidev@0 {
+					compatible = "spidev";
+					spi-max-frequency = <20000000>;
+					reg = <0>;
+				};
 			};
 		};
 		
