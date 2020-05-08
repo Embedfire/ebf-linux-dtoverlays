@@ -19,8 +19,8 @@
 	fragment@0 {
 		target-path = "/";
 		__overlay__ {
-			gpio-keys {
-					compatible = "gpio-keys";
+			sgpio-keys {
+					compatible = "sgpio-keys";
 					pinctrl-names = "default";
 					pinctrl-0 = <&pinctrl_gpio_keys>;
 
