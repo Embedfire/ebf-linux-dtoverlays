@@ -20,7 +20,7 @@
 		target-path = "/";
 		__overlay__ {
 			sgpio-keys {
-					compatible = "sgpio-keys";
+					compatible = "gpio-keys";
 					pinctrl-names = "default";
 					pinctrl-0 = <&pinctrl_gpio_keys>;
 
