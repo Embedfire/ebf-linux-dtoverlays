@@ -1,3 +1,16 @@
 *.cmd
 *.tmp
+
+*.dtbo
+*.o
+*.ko
+*.mod
+*.mod.c
+*.ko.cmd
+*.mod.o.cmd
+*.o.cmd
+modules.order
+Module.symvers
+
 config-pin
+output
