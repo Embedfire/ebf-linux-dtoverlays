@@ -3,6 +3,9 @@ DTC ?= dtc
 CPP ?= cpp
 DESTDIR ?=
 
+#include modules/Makefile
+
+
 DTCVERSION ?= $(shell $(DTC) --version | grep ^Version | sed 's/^.* //g')
 
 MAKEFLAGS += -rR --no-print-directory
@@ -233,7 +236,13 @@ FORCE:
 
 .PHONY: $(PHONY)
 
-
+drv_modules:
+	cd modules && $(MAKE) 
+drv_clean:
+	cd modules && $(MAKE) clean 
+drv_install:
+	cd modules && $(MAKE) install 
+	
 builddeb:
 	# build the source package in the parent directory
 	# then rename it to project_version.orig.tar.gz
