@@ -13,24 +13,24 @@
 
  / {
 	 fragment@0 {
-		 target = <&i2c2>;
+		 target = <&i2c3>;
 		 __overlay__ {
 		 			clock_frequency = <100000>;
 					pinctrl-names = "default";
-					pinctrl-0 = <&pinctrl_i2c2>;
+					pinctrl-0 = <&pinctrl_i2c3>;
 					status = "okay";
 					#address-cells = <1>;
 					#size-cells = <0>;
-		 };
+	 	};	 
 	 };
 
 	 fragment@1{
 		 target = <&iomuxc>;
 		 __overlay__ {
-					pinctrl_i2c2: i2c2grp {
+					pinctrl_i2c3: i2c3grp {
 						fsl,pins = <
-							MX6UL_PAD_UART5_TX_DATA__I2C2_SCL 0x4001b8b0
-							MX6UL_PAD_UART5_RX_DATA__I2C2_SDA 0x4001b8b0
+							MX6UL_PAD_LCD_DATA00__I2C3_SDA 0x4001b8b0
+							MX6UL_PAD_LCD_DATA01__I2C3_SCL 0x4001b8b0
 						>;
 					};
 		 };
