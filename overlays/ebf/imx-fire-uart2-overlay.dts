@@ -13,23 +13,23 @@
 #include "dt-bindings/gpio/gpio.h"
 
  / {
-     fragment@0 {
-        target=<&uart2>;
-        __overlay__ {
+	 fragment@0 {
+		target=<&uart2>;
+		__overlay__ {
 		pinctrl-names = "default";
 		pinctrl-0 = <&pinctrl_uart2>;
 		status = "okay";         
-        };
-     };
-    fragment@1 {
-        target=<&iomuxc>;
-        __overlay__ {
-            pinctrl_uart2:uart2grp {
-                fsl,pins = <
-			MX6UL_PAD_UART2_TX_DATA__UART2_DCE_TX	0x1b0b1
-			MX6UL_PAD_UART2_RX_DATA__UART2_DCE_RX	0x1b0b1        
-                >;
-            };  
-        };
-    };
+		};
+	 };
+	fragment@1 {
+		target=<&iomuxc>;
+		__overlay__ {
+			pinctrl_uart2:uart2grp {
+				fsl,pins = <
+					MX6UL_PAD_UART2_TX_DATA__UART2_DCE_TX	0x1b0b1
+					MX6UL_PAD_UART2_RX_DATA__UART2_DCE_RX	0x1b0b1        
+				>;
+			};  
+		};
+	};
 };
