@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2019 - All Rights Reserved by 
- * filename : imx-fire-emmc-overlay.dts
- * brief : Device Tree overlay for EBF6ull emmc device
+ * filename : imx-fire-enet2-overlay.dts
+ * brief : Device Tree overlay for EBF6ull enet2 device
  * author : embedfire
  * date : 2020-02-17 
  * version : A001
@@ -16,15 +16,15 @@
 
 / {
 		fragment@0 {
-			target = <&aips2>;
+			target = <&aips1>;
 			__overlay__ {
-				usdhc2: usdhc@2194000 {
-					status = "okay";
+				fec2: ethernet@20b4000 {
+				status = "okay";
 				};
 			};
 		};
 
 	__overrides__ {
-		enable = <&usdhc2>,"status";
+		enable = <&fec2>,"status";
 	};
 };

@@ -14,12 +14,30 @@
 /dts-v1/;
 /plugin/;
 
-
 / {
 		fragment@0 {
-			target = <&usdhc2>;
+			target = <&aips2>;
 			__overlay__ {
-				status = "disable";
+				gpmi: gpmi-nand@1806000 {
+					status = "okay";
+					#address-cells = <1>;
+					#size-cells = <1>;
+
+					partition_uboot: partition@0 {
+							label = "uboot";
+							reg = <0x00000000 0x00800000>;
+						};
+					partition_rootfs: partition@1 {
+							label = "rootfs";
+							reg = <0x00800000 0x1F800000>;
+						};
+				};
 			};
 		};
+
+	__overrides__ {
+		enable = <&gpmi>,"status";
+		uboot_size = <&partition_uboot>,"reg:4",<&partition_rootfs>,"reg:0";
+		rootfs_size = <&partition_rootfs>,"reg:4";
+	};
 };
