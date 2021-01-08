@@ -1,6 +1,6 @@
 
 _uname_r := $(shell uname -r)
-_BUILD   := /lib/modules/$(_uname_r)/build
+_BUILD   := /home/flyleaf/workdir/linux/debian/ebf-buster-linux-test/build_image/build
 _PWD     := $(shell pwd)
 _DEPMOD  ?= depmod -a
 

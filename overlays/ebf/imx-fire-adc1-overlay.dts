@@ -13,28 +13,28 @@
 #include "dt-bindings/gpio/gpio.h"
 
  / {
-     fragment@0 {
-        target-path="/";
-        __overlay__ {
+	 fragment@0 {
+		target-path="/";
+		__overlay__ {
 					reg_vref_3v3: regulator@2 {
 						compatible = "regulator-fixed";
 						regulator-name = "vref-3v3";
 						regulator-min-microvolt = <3300000>;
 						regulator-max-microvolt = <3300000>;
 					};          
-        };
-     };
+		};
+	 };
 
-    fragment@1 {
-        target=<&adc1>;
-        __overlay__ {
+	fragment@1 {
+		target=<&adc1>;
+		__overlay__ {
 					pinctrl-names = "default";
 					pinctrl-0 = <&pinctrl_adc1>;
 					vref-supply = <&reg_vref_3v3>;
 					num-channels = <4>; 			
 					status = "okay";
-        };
-    };
+		};
+	};
 		fragment@2 {
 				target=<&iomuxc>;
 				__overlay__ {

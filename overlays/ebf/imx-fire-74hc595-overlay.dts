@@ -63,4 +63,8 @@
 
 	};
 
+	__overrides__ {
+		enable = <&spi4>,"status";
+	};
+
 };
